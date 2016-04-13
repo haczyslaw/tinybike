@@ -7,6 +7,10 @@ gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'redis'
 gem 'haml-rails'
 gem 'rspec-rails'
+# bootstrap sass gem
+gem 'bootstrap-sass', '~> 3.3.6'
+# allow bootstrap to add browser vendor prefixes automatically
+gem 'autoprefixer-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
