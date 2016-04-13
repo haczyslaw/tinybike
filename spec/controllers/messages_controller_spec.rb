@@ -24,11 +24,11 @@ RSpec.describe MessagesController, type: :controller do
   # Message. As you add validations to Message, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { bike_id: "Bike Id", body: "Body" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { bike_id: nil, body: nil }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,14 @@ RSpec.describe MessagesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { 'bike_id' => 'New Bike Id', 'body' => 'New Body' }
       }
 
       it "updates the requested message" do
         message = Message.create! valid_attributes
         put :update, {:id => message.to_param, :message => new_attributes}, valid_session
         message.reload
-        skip("Add assertions for updated state")
+        expect(message.attributes.except('id')).to eq(new_attributes)
       end
 
       it "assigns the requested message as @message" do
