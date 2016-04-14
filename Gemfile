@@ -5,8 +5,8 @@ gem 'rails', '4.2.5.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'redis'
+gem 'will_paginate'
 gem 'haml-rails'
-gem 'rspec-rails'
 # bootstrap sass gem
 gem 'bootstrap-sass', '~> 3.3.6'
 # allow bootstrap to add browser vendor prefixes automatically
@@ -31,11 +31,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'rspec-rails'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do

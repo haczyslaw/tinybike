@@ -1,22 +1,14 @@
 %h1 Listing messages
 
-%table
+%table#messages.display{ 'data-source' => messages_url(format: 'json') }
   %thead
     %tr
-      %th Bike
+      %th Id
+      %th Bike Id
       %th Body
-      %th
-      %th
-      %th
+      %th Options
 
   %tbody
-    - @messages.each do |message|
-      %tr
-        %td= message.bike_id
-        %td= message.body
-        %td= link_to 'Show', message
-        %td= link_to 'Edit', edit_message_path(message)
-        %td= link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

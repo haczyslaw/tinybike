@@ -1,22 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "messages/index", type: :view do
-  before(:each) do
-    assign(:messages, [
-      Message.create!(
-        :bike_id => "Bike",
-        :body => "MyText"
-      ),
-      Message.create!(
-        :bike_id => "Bike",
-        :body => "MyText"
-      )
-    ])
-  end
 
-  it "renders a list of messages" do
+  it "renders empty table" do
     render
-    assert_select "tr>td", :text => "Bike".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>th", :text => "Id".to_s, :count => 1
+    assert_select "tr>th", :text => "Bike Id".to_s, :count => 1
+    assert_select "tr>th", :text => "Body".to_s, :count => 1
   end
 end

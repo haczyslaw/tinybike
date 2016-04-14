@@ -23,13 +23,18 @@ RSpec.describe MessagesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Message. As you add validations to Message, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    { bike_id: "Bike Id", body: "Body" }
-  }
 
-  let(:invalid_attributes) {
+  let(:valid_attributes) do
+    { bike_id: "Bike Id", body: "Body" }
+  end
+
+  let(:invalid_attributes) do
     { bike_id: nil, body: nil }
-  }
+  end
+
+  let(:bike_and_body_columns) do
+    JSON.parse(response.body)['aaData'].first[1..2]
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -39,8 +44,8 @@ RSpec.describe MessagesController, type: :controller do
   describe "GET #index" do
     it "assigns all messages as @messages" do
       message = Message.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:messages)).to eq([message])
+      get :index, {:format => :json}, valid_session
+      expect(bike_and_body_columns).to eq(['Bike Id', 'Body'])
     end
   end
 
