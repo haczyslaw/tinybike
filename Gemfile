@@ -32,6 +32,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rspec-rails'
+  # version 0.5 doesn't include pubsub
+  gem 'fakeredis', github: 'guilleiguaran/fakeredis', require: 'fakeredis/rspec'
 end
 
 group :development, :test do
