@@ -7,7 +7,11 @@ module MessageSender
   end
 
   def redis_connection
-    @redis_connection ||= Redis.new
+    @redis_connection || establish_redis_connection
+  end
+
+  def establish_redis_connection(options = {})
+    @redis_connection = Redis.new(options)
   end
 
   def generate_body

@@ -16,14 +16,19 @@ module MessageListener
     end
   end
 
-  def redis_connection
-    @redis_connection ||= Redis.new
+  def redis_connection(options = {})
+    @redis_connection ||= Redis.new(options)
   end
 
   def write_pid
-    file = File.new(Rails.root.join('tmp','message_listener.pid'), 'w')
+    file = File.new(pid_file_name, 'w')
     file.puts Process.pid
     file.close
+  end
+
+  def pid_file_name
+    ENV['LISTENER_PID_FILENAME'] ||
+      File.expand_path('../../tmp/message_listener.pid', __dir__)
   end
 
   def run
