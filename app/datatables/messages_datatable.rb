@@ -34,18 +34,22 @@ class MessagesDatatable
   def fetch_messages
     messages = Message.order("#{sort_column} #{sort_direction}")
     messages = messages.page(page).per_page(per_page)
-    if params[:sSearch].present?
-      messages = messages.where("bike_id LIKE %?% OR body LIKE %?%", params[:sSearch], params[:sSearch])
+    if search.present?
+      messages = messages.where("bike_id LIKE ? OR body LIKE ?", search+'%', search+'%')
     end
     messages
   end
 
   def page
-    params[:iDisplayStart].to_i/per_page + 1
+    params[:start].to_i/per_page + 1
   end
 
   def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+    params[:length].to_i > 0 ? params[:length].to_i : 10
+  end
+
+  def search
+    @search ||= params[:search][:value]
   end
 
   def order
