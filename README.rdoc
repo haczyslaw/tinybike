@@ -21,21 +21,29 @@ vim config/database.yml
 == Create & migrate databases
 
 bundle install
+
 rake db:create
+
 rake db:migrate
+
 RAILS_ENV=test rake db:migrate
 
 == Workers
 
 # starts as daemon
+
 rake worker:start
 
 # task send message to deamon
+
 BIKE_ID='pink bike' rake bike:msg
+
 BIKE_ID='red bike' rake bike:msg
+
 BIKE_ID='blue bike' rake bike:msg
 
 # don't forget to kill daemon
+
 rake worker:stop
 
 == Tests
@@ -43,6 +51,7 @@ rake worker:stop
 bundle exec rspec spec
 
 Full test with live Redis PubSub - use Redis DB (number 4) as testing environment
+
 Do not exec this command, if you have important data in Redis DB 4
 
 bundle exec rspec spec/fulltest/message_listener_full.rb
@@ -50,5 +59,7 @@ bundle exec rspec spec/fulltest/message_listener_full.rb
 == Day Limits
 
 Day limit in bytes is (8 * 1024 * 1024) / 31 = 270600
+
 One message is ~528 bytes (JSON format)
+
 So we can send 512 messages per day, if transfer is limited
