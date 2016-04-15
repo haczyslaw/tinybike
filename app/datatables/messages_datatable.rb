@@ -49,7 +49,7 @@ class MessagesDatatable
   end
 
   def search
-    @search ||= params[:search][:value]
+    @search ||= params[:search].try(:[], :value)
   end
 
   def order
